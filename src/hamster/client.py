@@ -132,7 +132,7 @@ class Storage(gobject.GObject):
            results are sorted by most recent usage.
            search is case insensitive
         """
-        return self._to_dict(('name', 'category'), self.conn.GetActivities(search))
+        return self._to_dict(('name', 'category', 'tags'), self.conn.GetActivities(search))
 
     def get_categories(self):
         """returns list of categories"""

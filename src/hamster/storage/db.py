@@ -768,7 +768,7 @@ class Storage(storage.Storage):
            activity names converted to lowercase"""
 
         query = """
-                   SELECT a.name AS name, b.name AS category
+                   SELECT a.name AS name, b.name AS category, (SELECT name from fact_tags ft LEFT JOIN tags t ON (ft.tag_id=t.id) WHERE fact_id=f.id) as tags
                      FROM activities a
                 LEFT JOIN categories b ON coalesce(b.id, -1) = a.category_id
                 LEFT JOIN facts f ON a.id = f.activity_id
